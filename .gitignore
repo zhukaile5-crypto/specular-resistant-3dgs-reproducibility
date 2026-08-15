@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+
+# Locally regenerated outputs and machine-specific verification details.
+reproduced_figures/
+local_verification_report.json
+verification_report.json
+
+# Common editor and operating-system files.
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
