@@ -1,0 +1,133 @@
+{
+  "schema": "paper_reproducibility_manifest_v1",
+  "paper_source": "paper/2D-Deglare-Reconstruction-Framework-Extended/main.tex",
+  "paper_figure_count": 6,
+  "paper_table_count": 5,
+  "figures": [
+    {
+      "id": 1,
+      "paper_asset": "Fig01_photo_scene6_global_final_method_comparison.png",
+      "reference_sha256": "c56a33b1b5acdb8aa58858bd8a46e6832abcd2a18bb293af69bcfce7f0b3d9a8",
+      "source_output": "results/version_evolution_figures/photo_scene6_0051_final_method_global.png",
+      "generator": "experiment_configs/build_v1_v6_visual_comparison.py",
+      "levels": ["R1", "R2"],
+      "reproduction_note": "Deterministic crop and montage from frame 0051 and three preserved image variants.",
+      "limitation": "The comparison is illustrative and has no reflection-free ground truth."
+    },
+    {
+      "id": 2,
+      "paper_asset": "Fig02_photo_scene6_local_final_method_comparison.png",
+      "reference_sha256": "43b7f3deaf8aacc70d948df28830234023036af2ba005b98c98ee787b2d5c2b8",
+      "source_output": "results/version_evolution_figures/photo_scene6_0012_final_method_cup_detail.png",
+      "generator": "experiment_configs/build_v1_v6_visual_comparison.py",
+      "levels": ["R1", "R2"],
+      "reproduction_note": "Deterministic crop and montage from frame 0012 and three preserved image variants.",
+      "limitation": "The crop was selected after visual inspection."
+    },
+    {
+      "id": 3,
+      "paper_asset": "Fig03_2D_reflection_suppression_metrics.png",
+      "reference_sha256": "88e3a897c84013ba3298ed3fb0d2b74d7ef699a8af497bd5f9d848b7e332f08e",
+      "source_output": "results/photo_scene6/v6_v7_specular_reduction/paper_figures/v6_v7_reflection_suppression_academic.png",
+      "generator": "experiment_configs/reproduce_fig3_specular_reduction.py",
+      "evaluator": "experiment_configs/evaluate_v6_specular_reduction.py",
+      "levels": ["R1", "R3"],
+      "reproduction_note": "Audited 96-image rerun with frozen V3 thresholds and comparison against preserved JSON/CSV.",
+      "limitation": "The independently recomputed score is still a same-family proxy and is normalized per image."
+    },
+    {
+      "id": 4,
+      "paper_asset": "Fig07_raw_vs_deglared_3DGS_matched_novel_views_reflection_marked.png",
+      "current_paper_number": 4,
+      "reference_sha256": "03af65cd659c4eb50bb1877ce0a504366838995e00d239f8ac9aa99953e91b4e",
+      "source_output": "results/photo_scene6/full96_reestimated_pose/presentation_figures/raw_vs_deglared_matched_novel_views_1x6_reflection_marked.png",
+      "generator": "experiment_configs/build_large_label_comparison_figures.py",
+      "render_pipeline": "experiment_configs/full96_novel_view_comparison.py",
+      "levels": ["R1", "R2", "R4"],
+      "reproduction_note": "Exact montage and fixed annotations can be rebuilt from six preserved matched renders.",
+      "limitation": "Fresh GPU training is not promised to be bitwise identical."
+    },
+    {
+      "id": 5,
+      "paper_asset": "Fig08_floating_specular_artifact_suppression_marked.png",
+      "current_paper_number": 5,
+      "reference_sha256": "610fe4441cb92052b6dfdd503e5916b37a9be0366971a12d5d1a59451106998f",
+      "source_output": "results/photo_scene6/full96_reestimated_pose/presentation_figures/raw_vs_deglared_floating_specular_artifact_crops_2x4_marked.png",
+      "generator": "experiment_configs/build_large_label_comparison_figures.py",
+      "levels": ["R1", "R2", "R5"],
+      "reproduction_note": "The final montage can be rebuilt from eight preserved crop images and fixed boxes.",
+      "limitation": "The presentation screenshots have no archived camera matrices or deterministic crop manifests."
+    },
+    {
+      "id": 6,
+      "paper_asset": "Fig09_matched_orbit_reflection_evaluation.png",
+      "current_paper_number": 6,
+      "reference_sha256": "c7edbe6a37241d91cd977c555fa275ee2ac3758ed8976f81d8126701cc4c96cc",
+      "source_output": "results/photo_scene6/full96_reestimated_pose/matched_orbit_specularity_3x30/paper_figures/matched_orbit_reflection_evaluation.png",
+      "generator": "experiment_configs/evaluate_matched_orbit_specularity.py",
+      "levels": ["R1", "R2", "R3", "R4"],
+      "reproduction_note": "The chart can be redrawn from archived CSV/JSON; metrics can be recomputed from 90 paired renders.",
+      "limitation": "The bootstrap interval describes direction-cluster variation on one trajectory only."
+    }
+  ],
+  "tables": [
+    {
+      "id": 1,
+      "label": "tab:method-parameters",
+      "generator": "tools/generate_tables.py",
+      "sources": [
+        "versions/registry.json",
+        "experiment_configs/blend_strategies.py"
+      ],
+      "levels": ["R2"],
+      "limitation": "This is a selected operational subset of the full frozen V6 profile."
+    },
+    {
+      "id": 2,
+      "label": "tab:method-components",
+      "generator": "tools/generate_tables.py",
+      "sources": [
+        "StableDelight/stabledelight/utils/specular_detector_v3.py",
+        "experiment_configs/cross_view_specular_v3.py",
+        "experiment_configs/blend_strategies.py",
+        "StableDelight/stabledelight/utils/cuda_uniform_filter.py"
+      ],
+      "levels": ["R2"],
+      "limitation": "This is a descriptive implementation map, not a numerical result."
+    },
+    {
+      "id": 3,
+      "label": "tab:cross-scene-2d",
+      "generator": "tools/generate_tables.py",
+      "evaluators": [
+        "experiment_configs/evaluate_v6_specular_reduction.py",
+        "experiment_configs/evaluate_2d_structure_fidelity.py"
+      ],
+      "levels": ["R2", "R3", "R4"],
+      "limitation": "The reflection score is same-family and the protected masks are narrow original-only masks."
+    },
+    {
+      "id": 4,
+      "label": "tab:heldout-control",
+      "generator": "tools/generate_tables.py",
+      "evaluators": [
+        "experiment_configs/evaluate_conventional_reconstruction_pair.py",
+        "experiment_configs/evaluate_specular_recon.py"
+      ],
+      "levels": ["R2", "R3", "R4-partial"],
+      "limitation": "Metrics are exact from preserved outputs, but original training seeds were not archived."
+    },
+    {
+      "id": 5,
+      "label": "tab:cross-scene-3d",
+      "generator": "tools/generate_tables.py",
+      "evaluators": [
+        "experiment_configs/run_cross_scene_end_to_end_3dgs.py",
+        "experiment_configs/evaluate_matched_orbit_specularity.py",
+        "experiment_configs/evaluate_common_support_trajectory.py"
+      ],
+      "levels": ["R2", "R3", "R4"],
+      "limitation": "S2/S5 use supported midpoint paths, whereas S3/S4/S6 use supported three-height ellipses."
+    }
+  ]
+}

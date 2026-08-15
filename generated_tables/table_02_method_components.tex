@@ -1,0 +1,12 @@
+\begin{tabular}{lll}
+\toprule
+Component & Mechanism & Role and output \\
+\midrule
+Single-view evidence & Signed multi-scale luminance and chromaticity cues & Dense reflection score without treating dark contrast as reflection \\
+Cross-view evidence & Affine exposure alignment, multi-scale track sampling, positive per-observation residuals, and geometric confidence & View-specific reflection support and reliability map \\
+Structure model & Paired signed edges, gradient energy, orientation coherence, and auxiliary-evidence rescue & Protection of edges and coherent high-frequency material texture \\
+Evidence matte & Foreground/background seeds, connectivity filtering, and structure-aware constrained diffusion & Continuous reflection likelihood, uncertainty, and boundary-consistent support \\
+Adaptive fusion & Native-reference scale proxy plus separated CIELAB base/detail/chroma weights & Scale-aware suppression with tone/detail preservation \\
+Accelerated execution & Batched CUDA feature construction, GPU residency, concurrent streams, and CPU operations retained for numerical equivalence & Reproducible final imagery at lower processing time \\
+\bottomrule
+\end{tabular}
